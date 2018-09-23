@@ -14,9 +14,9 @@
       <el-menu-item index="/" style="float: right;" @click.native="$emit('toggleLogin', true)">Login</el-menu-item>
     </div>
     <div id="loggedIn" v-if="user !== null">
-      <el-submenu style="float: right;" index="2">
-        <template slot="title">User</template>
-        <el-menu-item index="2-1" style="font-size: 14px;">Logout</el-menu-item>
+      <el-submenu style="float: right;" index="/">
+        <template slot="title">{{user.username}}</template>
+        <el-menu-item index="/" style="font-size: 14px;" @click="logout">Logout</el-menu-item>
       </el-submenu>
     </div>
   </el-menu>
@@ -26,11 +26,16 @@
 
 export default {
   name: 'Navbar',
+  props: ['user'],
   data () {
     return {
-      user: null
     }
   },
+  methods: {
+    logout() {
+      this.user = null;
+    }
+  }
 }
 </script>
 

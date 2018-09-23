@@ -1,11 +1,11 @@
 <template>
   <div class="home">
-    <Navbar v-on:toggleLogin="toggle" />
+    <Navbar :user="user" v-on:toggleLogin="toggle" />
     <el-main>
       <Carousel />
-      <Ride />
+      <Ride :user="user" />
       <Fare />
-      <AuthModal :type="type"  ref="login" />
+      <AuthModal :type="type" v-on:loggedIn="passdata" ref="login" />
     </el-main>
     <el-footer>
       <Footer />
@@ -35,13 +35,18 @@ export default {
   },
   data() {
     return{
-      type: null
+      type: null,
+      user: null,
+      route: null
     }
   },
   methods: {
     toggle (val) {
       this.type = val;
       this.$refs.login.dialogFormVisible = !this.$refs.login.dialogFormVisible;
+    },
+    passdata (value) {
+      this.user = value;
     }
   }
 }

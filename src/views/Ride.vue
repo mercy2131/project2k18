@@ -3,39 +3,73 @@
     <div style="text-align: center;">
       <h1 style="padding-top: 5vh;">Book your ride</h1>
     </div>
-    <Map />
+    <Map v-on:updateRoute="getRoute"/>
     <el-carousel arrow="never" type="card" height="200px" :autoplay="false">
-      <el-carousel-item @click.native="bookride">
+      <el-carousel-item @click.native="bookride('auto')">
         <img src="@/assets/auto-rishaw.png" />
         <span>Auto</span>
       </el-carousel-item>
-      <el-carousel-item @click.native="bookride">
+      <el-carousel-item @click.native="bookride('eco')">
         <img src="@/assets/frontal-taxi-cab.png" />
         <span>Eco</span>
       </el-carousel-item>
-      <el-carousel-item @click.native="bookride">
+      <el-carousel-item @click.native="bookride('luxury')">
         <img src="@/assets/limousine-side-view.png" />
         <span>Luxury</span>
       </el-carousel-item>
     </el-carousel>
+    <Ridetimer />
   </div>
 </template>
 <script>
 import axios from 'axios';
-
 import Map from '@/components/Map.vue';
-
+import Ridetimer from '@/components/Ridetime.vue';
 
 export default{
   name: 'Ride',
-  data () {
+  props: ['user'],
+  data() {
     return {
-
+      route: {
+        userId: '',
+        type: '',
+        source: '',
+        destination: '',
+        distance: ''
+      }
     }
   },
   components: {
     Map,
+    Ridetimer,
   },
+  methods: {
+    bookride(type) {
+      if(this.user === null){
+        return alert('User must be logged in');
+      }
+      if(this.source === '' || this.destination === '' || this.distance === '') {
+        return alert('Enter a destination');
+      }
+      this.route.userId = this.user._id;
+      this.route.type = type;
+      axios.post('http://localhost:3000/book', this.route)
+      .then(response => {
+        if (response.data.success) {
+
+        }
+      })
+      .catch(err => {
+
+      })
+    },
+    getRoute(newroute) {
+      this.route.source = newroute.source;
+      this.route.destination = newroute.destination;
+      this.route.distance = newroute.distance;
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>

@@ -38,7 +38,16 @@ export default {
     });
 
     this.directions.on('route', (e) => {
+      const _origin = this.directions.getOrigin();
+      const _dest = this.directions.getDestination();
       this.distance = e.route[0].distance;
+
+      const sendRoute = {
+        source: _origin.geometry.coordinates,
+        destination: _origin.geometry.coordinates,
+        distance: this.distance
+      }
+      this.$emit('updateRoute', sendRoute);
     });
     this.map = new mapboxgl.Map({
       container: 'cabmap',
