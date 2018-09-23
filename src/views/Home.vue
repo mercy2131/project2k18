@@ -1,18 +1,48 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Navbar v-on:toggleLogin="toggle" />
+    <el-main>
+      <Carousel />
+      <Ride />
+      <Fare />
+      <AuthModal :type="type"  ref="login" />
+    </el-main>
+    <el-footer>
+      <Footer />
+    </el-footer>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+
+import Navbar from '@/components/Navbar.vue';
+import Carousel from '@/components/Carousel.vue';
+import Footer from '@/components/Footer.vue';
+import AuthModal from '@/views/AuthModal.vue';
+
+import Ride from './Ride.vue';
+import Fare from './Fare.vue';
 
 export default {
-  name: 'home',
+  name: 'Home',
   components: {
-    HelloWorld,
+    Navbar,
+    Carousel,
+    Ride,
+    Fare,
+    Footer,
+    AuthModal,
   },
-};
+  data() {
+    return{
+      type: null
+    }
+  },
+  methods: {
+    toggle (val) {
+      this.type = val;
+      this.$refs.login.dialogFormVisible = !this.$refs.login.dialogFormVisible;
+    }
+  }
+}
 </script>
