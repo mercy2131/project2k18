@@ -18,7 +18,7 @@
         <span>Luxury</span>
       </el-carousel-item>
     </el-carousel>
-    <Ridetimer />
+    <Ridetimer ref="timer"/>
   </div>
 </template>
 <script>
@@ -57,7 +57,7 @@ export default{
       axios.post('http://localhost:3000/book', this.route)
       .then(response => {
         if (response.data.success) {
-
+          this.$refs.timer.timerVisible= !this.$refs.timer.timerVisible;
         }
       })
       .catch(err => {

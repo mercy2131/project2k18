@@ -12,7 +12,7 @@ export default {
   name: 'RideTimer',
   data() {
     return {
-      timerVisible : true
+      timerVisible : false
     }
   }
 }
