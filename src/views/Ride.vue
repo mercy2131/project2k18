@@ -5,17 +5,20 @@
     </div>
     <Map v-on:updateRoute="getRoute"/>
     <el-carousel arrow="never" type="card" height="200px" :autoplay="false">
-      <el-carousel-item @click.native="bookride('auto')">
+      <el-carousel-item>
         <img src="@/assets/auto-rishaw.png" />
         <span>Auto</span>
+        <el-button type="primary" round @click.native="bookride('auto')">Book</el-button>
       </el-carousel-item>
-      <el-carousel-item @click.native="bookride('eco')">
+      <el-carousel-item>
         <img src="@/assets/frontal-taxi-cab.png" />
         <span>Eco</span>
+        <el-button type="primary" round @click.native="bookride('eco')">Book</el-button>
       </el-carousel-item>
-      <el-carousel-item @click.native="bookride('luxury')">
+      <el-carousel-item>
         <img src="@/assets/limousine-side-view.png" />
         <span>Luxury</span>
+        <el-button type="primary" round @click.native="bookride('luxury')">Book</el-button>
       </el-carousel-item>
     </el-carousel>
     <Ridetimer ref="timer"/>
@@ -104,7 +107,7 @@ export default{
 .el-carousel__item span {
   position: absolute;
   margin-left: 21.5vw;
-  margin-top: 20vh;
+  margin-top: 15vh;
   font-family: 'Amaranth', sans-serif;
   font-size: 1.3rem;
 }
@@ -114,6 +117,12 @@ export default{
 
 .el-carousel__item:nth-child(2n+1) {
   background-color: #d3d3d3;
+}
+
+.el-button {
+  position: absolute;
+  bottom: 0;
+  left: 44%;
 }
 </style>
 

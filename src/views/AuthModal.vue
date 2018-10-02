@@ -5,7 +5,7 @@
       <el-input v-model="login.name" autocomplete="off"></el-input>
     </el-form-item>
     <el-form-item label="Password" :label-width="formLabelWidth">
-      <el-input v-model="login.password" autocomplete="off"></el-input>
+      <el-input v-model="login.password" autocomplete="off" type="password"></el-input>
     </el-form-item>
   </el-form>
   <span slot="footer" class="dialog-footer" v-if="type === true">
@@ -16,7 +16,7 @@
       <el-input v-model="signup.name" autocomplete="off"></el-input>
     </el-form-item>
     <el-form-item label="Password" :label-width="formLabelWidth">
-      <el-input v-model="signup.password" autocomplete="off"></el-input>
+      <el-input v-model="signup.password" autocomplete="off" type="password"></el-input>
     </el-form-item>
     <el-form-item label="Contact" :label-width="formLabelWidth">
       <el-input v-model="signup.contact" autocomplete="off"></el-input>
